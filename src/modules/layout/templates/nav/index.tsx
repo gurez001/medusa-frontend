@@ -7,8 +7,14 @@ import SideMenu from "@modules/layout/components/side-menu"
 import Image from "next/image"
 import Logo from "../Images/Logo.png"
 import Link from "next/link"
+import Medusa from "@medusajs/medusa-js"
+import { medusaClient } from "@lib/config"
+
 export default async function Nav() {
   const regions = await listRegions().then((regions) => regions)
+  const { product_categories, limit, offset, count } =
+    await medusaClient.productCategories.list()
+  console.log(product_categories)
 
   return (
     <div className="sticky bg-backgound-0 top-0 inset-x-0 z-50 group">
@@ -16,33 +22,51 @@ export default async function Nav() {
         <nav className="max-w-7xl px-4 mx-auto txt-xsmall-plus text-ui-fg-subtle flex items-center justify-between w-full h-full text-small-regular">
           <div className="w-1/3">
             <div className="w-full items-center gap-x-6 h-full">
-              <div className="block md:hidden">  
+              <div className="block md:hidden">
                 <SideMenu regions={regions} />
               </div>
-              <div className="hidden items-center gap-x-6 small:flex">
-                <LocalizedClientLink
-                  className="hover:text-ui-fg-base"
-                  href="/packaging"
-                  data-testid="nav-account-link"
-                >
-                  Packaging
-                </LocalizedClientLink>
 
-                <LocalizedClientLink
-                  className="hover:text-ui-fg-base"
-                  href="/personal-care"
-                  data-testid="nav-account-link"
-                >
-                  Personal Care
-                </LocalizedClientLink>
-
-                <LocalizedClientLink
-                  className="hover:text-ui-fg-base"
-                  href="/pet-care"
-                  data-testid="nav-account-link"
-                >
-                  Pet Care
-                </LocalizedClientLink>
+              <div className="hidden items-center gap-x-6 md:flex">
+                {product_categories
+                  .filter((item) => item.parent_category_id === null)
+                  .map((item) => (
+                    <div className="parent-nav">
+                      <LocalizedClientLink
+                        key={item.id}
+                        className="hover:text-ui-fg-base"
+                        href={`/${item.handle}`}
+                        data-testid="nav-account-link"
+                      >
+                        {item.name}
+                      </LocalizedClientLink>
+                      <div className="absolute left-10 child-nav">
+                        <div className="w-11/12 p-3 place-content-center grid grid-cols-2 md:grid-cols-5 lg:grid-cols-7 gap-x-2 lg:gap-x-3 lg:gap-y-5 bg-backgound-5 rounded-lg">
+                          {product_categories
+                            .filter(
+                              (subitem) =>
+                                subitem.parent_category_id === item.id
+                            )
+                            .map((subitem) => (
+                              <LocalizedClientLink
+                                key={subitem.id}
+                                className="text-textColor-0 rounded-lg hover:text-black p-3 shadow-lg bg-white"
+                                href={`/${subitem.handle}`}
+                                data-testid="nav-account-link"
+                              >
+                                <div>
+                                  <img
+                                  className="p-4"
+                                    src="https://www.upack.in/media/catalog/product/cache/53044a3cfd6bcac7163468e00689f8a8/3/2/323b-min.jpg"
+                                    alt="th"
+                                  />
+                               <p className="text-center">   {subitem.name}</p>
+                                </div>
+                              </LocalizedClientLink>
+                            ))}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
               </div>
             </div>
           </div>

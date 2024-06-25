@@ -50,7 +50,6 @@ const getCollectionsWithProducts = cache(
         collection.products = response.products as unknown as Product[]
       })
     )
-
     return collections as unknown as ProductCollectionWithPreviews[]
   }
 )
@@ -62,11 +61,12 @@ export default async function Home({
 }) {
   const collections = await getCollectionsWithProducts(countryCode)
   const region = await getRegion(countryCode)
-
+  
   if (!collections || !region) {
     return null
   }
-
+  
+  console.log(collections)
   return (
     <>
       <Hero />

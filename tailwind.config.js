@@ -21,6 +21,11 @@ module.exports = {
         padding: "padding-top padding-right padding-bottom padding-left",
       },
       colors: {
+        textColor:{
+          0:"#354200",  // icon color
+          1:"#ff905a", // pink color
+          2:"#f8f1e8", // body color
+        },
         backgound:{
           0:'#f8f1e8', //bodycolor
           5:'#354200',
@@ -60,6 +65,8 @@ module.exports = {
         "2xlarge": "1920px",
       },
       fontSize: {
+        12:"12px",
+        14:"14px",
         "3xl": "2rem",
       },
       fontFamily: {

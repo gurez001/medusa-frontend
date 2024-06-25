@@ -110,3 +110,9 @@
     @apply text-[32px] leading-[44px] font-semibold;
   }
 }
+.child-nav{
+  display: none;
+}
+.parent-nav:hover .child-nav{
+  display: block !important;
+}

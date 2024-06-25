@@ -2,7 +2,8 @@
 import { useState, useEffect } from "react"
 
 const useStickyAndResize = () => {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+  const isClient = typeof window === "object";
+  const [windowWidth, setWindowWidth] = useState(isClient ? window.innerWidth : 0);
 
   useEffect(() => {
     const handleResize = () => {
