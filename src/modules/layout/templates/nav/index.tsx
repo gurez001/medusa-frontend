@@ -6,15 +6,13 @@ import CartButton from "@modules/layout/components/cart-button"
 import SideMenu from "@modules/layout/components/side-menu"
 import Image from "next/image"
 import Logo from "../Images/Logo.png"
-import Link from "next/link"
-import Medusa from "@medusajs/medusa-js"
 import { medusaClient } from "@lib/config"
 
 export default async function Nav() {
   const regions = await listRegions().then((regions) => regions)
   const { product_categories, limit, offset, count } =
     await medusaClient.productCategories.list()
-  console.log(product_categories)
+ 
 
   return (
     <div className="sticky bg-backgound-0 top-0 inset-x-0 z-50 group">

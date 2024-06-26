@@ -9,18 +9,16 @@ import Cards from "../cards/Cards"
 import Category_MediaCard from "../cards/Category_MediaCard"
 import useStickyAndResize from "@modules/common/components/current-width/useStickyAndResize"
 
-const Categorie_slider = ({ title }) => {
+const Categorie_slider = ({ product_categories }) => {
   const [active_index, set_active_index] = useState(null)
+  
   const show_data_handler = (index) => {
     set_active_index((prevIndex) => (prevIndex === index ? null : index))
   }
-  const width = useStickyAndResize()
-  const { windowWidth } = width
+  const {windowWidth} = useStickyAndResize()
   return (
     <>
       <div className="py-4 md:py-12">
-        <h2>Title</h2>
-
         <div>
           <Swiper
             slidesPerView={
@@ -54,9 +52,10 @@ const Categorie_slider = ({ title }) => {
             modules={[Parallax, Navigation]}
             className="mySwiper"
           >
-            {Array.from(Array(12)).map((_, index) => (
+            {product_categories?.map((item, index) => (
               <SwiperSlide key={index}>
                 <Category_MediaCard
+                item={item}
                   event_handler={show_data_handler}
                   index={index}
                   active_index={active_index}
@@ -65,7 +64,6 @@ const Categorie_slider = ({ title }) => {
             ))}
           </Swiper>
         </div>
-        {active_index && <Cards />}
       </div>
     </>
   )

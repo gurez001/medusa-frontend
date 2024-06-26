@@ -66,11 +66,10 @@ export default async function Home({
     return null
   }
   
-  console.log(collections)
   return (
     <>
       <Hero />
-      <Categorie/>
+      <Categorie region={region}/>
       <div className="py-12">
         <ul className="flex flex-col gap-x-6">
           <FeaturedProducts collections={collections} region={region} />
