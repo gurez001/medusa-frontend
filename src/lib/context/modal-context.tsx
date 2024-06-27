@@ -15,7 +15,7 @@ interface ModalProviderProps {
   close: () => void
 }
 
-export const ModalProvider = ({ children }: ModalProviderProps) => {
+ const ModalProvider = ({ children }: ModalProviderProps) => {
   const [number, setNumber] = useState<number | null>(null);
 
   const currentIndex = (index: number) => {
@@ -34,10 +34,13 @@ export const ModalProvider = ({ children }: ModalProviderProps) => {
   )
 }
 
-export const useModal = () => {
+function useModal()  {
   const context = useContext(ModalContext)
   if (context === null) {
     throw new Error("useModal must be used within a ModalProvider")
   }
   return context
+}
+export {
+  useModal,ModalProvider
 }
