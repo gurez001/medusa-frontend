@@ -9,11 +9,15 @@ import Cards from "../cards/Cards"
 import Category_MediaCard from "../cards/Category_MediaCard"
 import useStickyAndResize from "@modules/common/components/current-width/useStickyAndResize"
 
+
 const Categorie_slider = ({ product_categories }) => {
   const [active_index, set_active_index] = useState(null)
-  
+  // console.log(useModal)
   const show_data_handler = (index) => {
     set_active_index((prevIndex) => (prevIndex === index ? null : index))
+  }
+  const currentIndex = ()=>{
+
   }
   const {windowWidth} = useStickyAndResize()
   return (
@@ -56,7 +60,7 @@ const Categorie_slider = ({ product_categories }) => {
               <SwiperSlide key={index}>
                 <Category_MediaCard
                 item={item}
-                  event_handler={show_data_handler}
+                  event_handler={currentIndex}
                   index={index}
                   active_index={active_index}
                 />

@@ -1,14 +1,15 @@
 import React from 'react'
 import Categorie_slider from "@modules/common/ui/sliders/Categorie_slider";
 import { medusaClient } from '@lib/config';
-import Cards from '@modules/common/ui/cards/Cards';
 import ProductPreview from '@modules/products/components/product-preview';
+import { useModal } from "@lib/context/modal-context"
 
 const Categorie = async({region}) => {
+// const {} = await useModal();
   const { product_categories, limit, offset, count } =
   await medusaClient.productCategories.list()
   const {products} = await medusaClient.products.list({expand:"categories"})
-  console.log(products)
+  // console.log(products)
   return (
     <div className="max-w-7xl mx-auto">
       <Categorie_slider product_categories={product_categories}/>

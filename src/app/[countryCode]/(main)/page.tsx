@@ -1,3 +1,4 @@
+
 import { Product } from "@medusajs/medusa"
 import { Metadata } from "next"
 
@@ -7,7 +8,7 @@ import Hero from "@modules/home/components/hero"
 import Categorie from "@modules/home/components/categorie"
 import { ProductCollectionWithPreviews } from "types/global"
 import { cache } from "react"
-
+import { ModalProvider } from "@lib/context/modal-context"
 export const metadata: Metadata = {
   title: "Medusa Next.js Starter Template",
   description:
@@ -61,15 +62,17 @@ export default async function Home({
 }) {
   const collections = await getCollectionsWithProducts(countryCode)
   const region = await getRegion(countryCode)
-  
+
   if (!collections || !region) {
     return null
   }
-  
+
   return (
     <>
       <Hero />
-      <Categorie region={region}/>
+      <ModalProvider>
+        <Categorie region={region} />
+      </ModalProvider>
       <div className="py-12">
         <ul className="flex flex-col gap-x-6">
           <FeaturedProducts collections={collections} region={region} />
