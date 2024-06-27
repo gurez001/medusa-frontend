@@ -1,11 +1,9 @@
 "use client"
 
-import React, { createContext, useContext, useState } from "react"
+import React, { createContext, useContext } from "react"
 
 interface ModalContext {
-  // close: () => void
-  number: number | null;
-  currentIndex: (index: number) => void;
+  close: () => void
 }
 
 const ModalContext = createContext<ModalContext | null>(null)
@@ -15,18 +13,11 @@ interface ModalProviderProps {
   close: () => void
 }
 
- const ModalProvider = ({ children }: ModalProviderProps) => {
-  const [number, setNumber] = useState<number | null>(null);
-
-  const currentIndex = (index: number) => {
-    setNumber((prevIndex) => (prevIndex === index ? null : index));
-  };
+export const ModalProvider = ({ children, close }: ModalProviderProps) => {
   return (
     <ModalContext.Provider
       value={{
-        // close,
-        number,
-        currentIndex,
+        close,
       }}
     >
       {children}
@@ -34,13 +25,10 @@ interface ModalProviderProps {
   )
 }
 
-function useModal()  {
+export const useModal = () => {
   const context = useContext(ModalContext)
   if (context === null) {
     throw new Error("useModal must be used within a ModalProvider")
   }
   return context
-}
-export {
-  useModal,ModalProvider
 }

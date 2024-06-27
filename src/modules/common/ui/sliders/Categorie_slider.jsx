@@ -8,12 +8,9 @@ import { Parallax, Navigation } from "swiper/modules"
 import Cards from "../cards/Cards"
 import Category_MediaCard from "../cards/Category_MediaCard"
 import useStickyAndResize from "@modules/common/components/current-width/useStickyAndResize"
-import { useModal } from "@lib/context/modal-context"
 
 const Categorie_slider = ({ product_categories }) => {
   const [active_index, set_active_index] = useState(null)
-  const {} = useModal();
-  console.log(useModal)
   const show_data_handler = (index) => {
     set_active_index((prevIndex) => (prevIndex === index ? null : index))
   }
