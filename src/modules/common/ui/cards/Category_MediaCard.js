@@ -16,7 +16,7 @@ const Category_MediaCard = ({ item, event_handler, index, active_index }) => {
         </div>
         <div className="px-2 text-center bg-backgound-5 py-2">
           <h3 onClick={() => event_handler(item.id)} className="text-sm cursor-pointer">
-            {item.name}
+            {item.title}
           </h3>
         </div>
       </div>

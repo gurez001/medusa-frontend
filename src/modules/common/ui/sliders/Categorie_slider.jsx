@@ -9,7 +9,7 @@ import Cards from "../cards/Cards"
 import Category_MediaCard from "../cards/Category_MediaCard"
 import useStickyAndResize from "@modules/common/components/current-width/useStickyAndResize"
 
-const Categorie_slider = ({ product_categories }) => {
+const Categorie_slider = ({ collections }) => {
   const [active_index, set_active_index] = useState(null)
   const show_data_handler = (index) => {
     set_active_index((prevIndex) => (prevIndex === index ? null : index))
@@ -54,7 +54,7 @@ const Categorie_slider = ({ product_categories }) => {
             modules={[Parallax, Navigation]}
             className="mySwiper"
           >
-            {product_categories?.map((item, index) => (
+            {collections?.map((item, index) => (
               <SwiperSlide key={index}>
                 <Category_MediaCard
                 item={item}
@@ -67,6 +67,9 @@ const Categorie_slider = ({ product_categories }) => {
           </Swiper>
         </div>
       </div>
+
+
+      
     </>
   )
 }
