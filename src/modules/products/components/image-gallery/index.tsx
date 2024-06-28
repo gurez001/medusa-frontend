@@ -1,14 +1,17 @@
 import { Image as MedusaImage } from "@medusajs/medusa"
 import { Container } from "@medusajs/ui"
 import Image from "next/image"
-
+// import Image_slider from "@modules/common/ui/sliders/Image_slider"
 type ImageGalleryProps = {
   images: MedusaImage[]
 }
 
 const ImageGallery = ({ images }: ImageGalleryProps) => {
+  console.log(images)
   return (
     <div className="flex items-start relative">
+      {/* <Image_slider images={images} /> */}
+
       <div className="flex flex-col flex-1 small:mx-16 gap-y-4">
         {images.map((image, index) => {
           return (

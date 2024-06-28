@@ -25,8 +25,8 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
   ]
 
   return (
-    <div className="w-full">
-      <Accordion type="multiple">
+    <div className="w-full p-10">
+      {/* <Accordion type="multiple">
         {tabs.map((tab, i) => (
           <Accordion.Item
             key={i}
@@ -37,15 +37,17 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
             {tab.component}
           </Accordion.Item>
         ))}
-      </Accordion>
+      </Accordion> */}
+      <ProductInfoTab product={product} />
+      <ShippingInfoTab />
     </div>
   )
 }
 
 const ProductInfoTab = ({ product }: ProductTabsProps) => {
   return (
-    <div className="text-small-regular py-8">
-      <div className="grid grid-cols-2 gap-x-8">
+    <div className="text-small-regular py-3">
+      <div className="border-t-2 py-4 grid grid-cols-2 gap-x-8">
         <div className="flex flex-col gap-y-4">
           <div>
             <span className="font-semibold">Material</span>
@@ -86,8 +88,8 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
 
 const ShippingInfoTab = () => {
   return (
-    <div className="text-small-regular py-8">
-      <div className="grid grid-cols-1 gap-y-8">
+    <div className="text-small-regular py-3">
+      <div className="border-t-2 py-4 grid grid-cols-1 gap-y-8">
         <div className="flex items-start gap-x-2">
           <FastDelivery />
           <div>

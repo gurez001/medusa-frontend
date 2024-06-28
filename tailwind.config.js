@@ -67,6 +67,7 @@ module.exports = {
       fontSize: {
         12:"12px",
         14:"14px",
+        "1xl": "1.5rem",
         "3xl": "2rem",
       },
       fontFamily: {
